@@ -1,0 +1,55 @@
+---
+const services = [
+  {
+    iconClass: 'icon-web',
+    icon: '🌐',
+    title: 'Website Development',
+    desc: 'Fast, responsive websites that look amazing on every device. Custom-coded, no templates.',
+    price: 'From $1,500',
+    unit: '/ project',
+  },
+  {
+    iconClass: 'icon-app',
+    icon: '📱',
+    title: 'Mobile App Development',
+    desc: 'iOS & Android apps built with React Native. Smooth UX, native feel, one codebase.',
+    price: 'From $3,000',
+    unit: '/ project',
+  },
+  {
+    iconClass: 'icon-saas',
+    icon: '🚀',
+    title: 'SaaS / Web App',
+    desc: 'Full-stack applications with auth, dashboards, payments, and all the moving parts.',
+    price: 'From $5,000',
+    unit: '/ project',
+  },
+  {
+    iconClass: 'icon-design',
+    icon: '✨',
+    title: 'UI/UX Design',
+    desc: 'Clean interfaces designed for humans. Wireframes to polished mockups, ready for dev.',
+    price: 'From $800',
+    unit: '/ project',
+  },
+];
+---
+
+<section id="services">
+  <div class="reveal">
+    <span class="section-tag tag-services">⚡ Services</span>
+    <h2 class="section-heading">How I can help you</h2>
+    <p class="section-sub">Whether you're launching something new or leveling up what you've got, I'll handle the tech so you can focus on your business.</p>
+  </div>
+
+  <div class="services-grid">
+    {services.map((service) => (
+      <div class="service-card reveal">
+        <div class={`service-icon ${service.iconClass}`}>{service.icon}</div>
+        <h3 class="service-title">{service.title}</h3>
+        <p class="service-desc">{service.desc}</p>
+        <div class="service-price">{service.price} <span>{service.unit}</span></div>
+      </div>
+    ))}
+  </div>
+</section>

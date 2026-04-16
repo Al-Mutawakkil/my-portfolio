@@ -1,0 +1,89 @@
+---
+type Project = {
+  number: string;
+  name: string;
+  description: string;
+  tags: string[];
+  image: string;
+  device: 'web' | 'mobile';
+};
+
+const projects: Project[] = [
+  {
+    number: '01',
+    name: 'Karmaclub',
+    description: 'Financing and project investment platform — admin dashboard, entrepreneur portal, and investor-facing funding flows.',
+    tags: ['Bubble.io'],
+    image: '/projects/karmaclub.jpg',
+    device: 'web',
+  },
+  {
+    number: '02',
+    name: 'YOLO Padel',
+    description: 'Multi-venue padel court booking with online payments, dynamic pricing, RBAC, and an admin dashboard.',
+    tags: ['Next.js', 'Typescript', 'Prisma', 'Xendit', 'PostgreSQL'],
+    image: '/projects/yolo-padel.jpg',
+    device: 'web',
+  },
+  {
+    number: '03',
+    name: 'AYANA Rewards',
+    description: 'Offline-first loyalty points issuance for hotel staff, with AI-powered receipt OCR via Gemini and background sync.',
+    tags: ['Flutter', 'BLoC', 'Gemini'],
+    image: '/projects/ayana-rewards.png',
+    device: 'mobile',
+  },
+  {
+    number: '04',
+    name: 'Swasana Wedding',
+    description: 'Wedding venue booking management with an end-to-end leads pipeline for the sales team.',
+    tags: ['Next.js', 'Fullstack', 'PostgreSQL'],
+    image: '/projects/swasana.jpg',
+    device: 'web',
+  },
+];
+---
+
+<section id="work">
+  <div class="reveal work-header">
+    <span class="section-tag tag-work">✦ Selected Work</span>
+    <h2 class="section-heading">Stuff I've built</h2>
+    <p class="section-sub">Real projects, real results. Each one solved a specific problem for a specific person. Yours could be next.</p>
+  </div>
+
+  <div class="projects-grid">
+    {projects.map((project) => (
+      <div class="project-card reveal">
+        <div class={`project-thumb device-${project.device}`}>
+          {project.device === 'web' ? (
+            <div class="browser-frame">
+              <div class="browser-bar">
+                <span class="browser-dot dot-red"></span>
+                <span class="browser-dot dot-yellow"></span>
+                <span class="browser-dot dot-green"></span>
+              </div>
+              <img src={project.image} alt={project.name} class="browser-screen" loading="lazy" />
+            </div>
+          ) : (
+            <div class="phone-stage">
+              <img src={project.image} alt="" class="phone-backdrop" aria-hidden="true" loading="lazy" />
+              <div class="phone-frame">
+                <img src={project.image} alt={project.name} class="phone-screen" loading="lazy" />
+              </div>
+            </div>
+          )}
+          <span class="project-number">{project.number}</span>
+        </div>
+        <div class="project-info">
+          <div class="project-name">{project.name}</div>
+          <div class="project-description">{project.description}</div>
+          <div class="project-tags">
+            {project.tags.map((tag) => (
+              <span class="p-tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

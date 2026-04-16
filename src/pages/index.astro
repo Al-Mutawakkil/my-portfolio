@@ -1,0 +1,117 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Work from '../components/Work.astro';
+import About from '../components/About.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <!-- Floating shapes -->
+  <div class="shapes-layer">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+
+  <Nav />
+  <Hero />
+  <Work />
+  <About />
+  <CTA />
+  <Footer />
+</Layout>
+
+<script>
+  // Scroll reveal with stagger
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+  reveals.forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      if (!item) return;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Scroll-locked stats reveal
+  (() => {
+    const wrapper = document.querySelector('.stats-scroll-wrapper');
+    const label = document.querySelector<HTMLElement>('.stats-label');
+    const statItems = document.querySelectorAll<HTMLElement>('.stat-item');
+    if (!wrapper || !statItems.length) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rect = wrapper.getBoundingClientRect();
+          const wrapperHeight = (wrapper as HTMLElement).offsetHeight;
+          const viewH = window.innerHeight;
+
+          const scrollIntoWrapper = -rect.top;
+          const maxScroll = wrapperHeight - viewH;
+          const progress = Math.max(0, Math.min(1, scrollIntoWrapper / maxScroll));
+
+          if (label) {
+            if (progress >= 0.05) {
+              label.style.opacity = '1';
+              label.style.transform = 'translateY(0)';
+            } else {
+              label.style.opacity = '0';
+              label.style.transform = 'translateY(20px)';
+            }
+            label.style.transition = 'opacity 0.5s, transform 0.5s var(--smooth)';
+          }
+
+          statItems.forEach((item, i) => {
+            const phaseStart = 0.15 + (i * 0.25);
+            if (progress >= phaseStart) {
+              item.classList.add('stat-visible');
+            } else {
+              item.classList.remove('stat-visible');
+            }
+          });
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  })();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
+      if (!href) return;
+      if (href === '#' || href === '#top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>

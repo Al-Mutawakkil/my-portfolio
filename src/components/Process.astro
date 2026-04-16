@@ -1,0 +1,45 @@
+---
+const steps = [
+  {
+    emoji: '💬',
+    num: '01',
+    title: 'Discovery Call',
+    desc: 'We chat about your goals, timeline, and budget. Free, no commitment, no pressure.',
+  },
+  {
+    emoji: '📐',
+    num: '02',
+    title: 'Plan & Design',
+    desc: "I map out the architecture, create designs, and get your sign-off before writing a line of code.",
+  },
+  {
+    emoji: '⚙️',
+    num: '03',
+    title: 'Build & Iterate',
+    desc: 'Weekly updates, demo links, and feedback rounds. You see progress every step of the way.',
+  },
+  {
+    emoji: '🚀',
+    num: '04',
+    title: 'Launch & Support',
+    desc: 'I handle deployment and stick around for 30 days of free support after launch.',
+  },
+];
+---
+
+<div class="process reveal" id="process">
+  <span class="section-tag">🎯 My Process</span>
+  <h2 class="section-heading">Simple. Transparent. No BS.</h2>
+  <p class="section-sub">Four steps from idea to launch. You'll know exactly what's happening at every stage.</p>
+
+  <div class="process-steps">
+    {steps.map((step) => (
+      <div class="step">
+        <span class="step-emoji">{step.emoji}</span>
+        <div class="step-num">{step.num}</div>
+        <h3 class="step-title">{step.title}</h3>
+        <p class="step-desc">{step.desc}</p>
+      </div>
+    ))}
+  </div>
+</div>

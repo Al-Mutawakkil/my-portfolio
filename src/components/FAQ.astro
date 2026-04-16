@@ -1,0 +1,46 @@
+---
+const faqs = [
+  {
+    question: 'How long does a typical project take?',
+    answer: "It depends on scope, but most websites take 2-4 weeks and apps take 4-8 weeks. I'll give you a clear timeline before we start, and I stick to it.",
+  },
+  {
+    question: "What's your tech stack?",
+    answer: "React, Next.js, React Native, Node.js, TypeScript, PostgreSQL, Firebase, and more. I pick the right tool for the job — not the trendiest one.",
+  },
+  {
+    question: 'Do you do design too, or just development?',
+    answer: "Both! I handle the full process from wireframes and UI design in Figma to the final coded product. One person, no miscommunication.",
+  },
+  {
+    question: 'What if I need changes after launch?',
+    answer: "Every project includes 30 days of free support after launch. After that, I offer affordable maintenance plans or one-off updates. I'm not disappearing on you.",
+  },
+  {
+    question: 'How do payments work?',
+    answer: "50% upfront to kick things off, 50% on delivery. For larger projects, we can split it into milestones. No surprises, no hidden fees.",
+  },
+];
+---
+
+<section id="faq">
+  <div class="reveal">
+    <span class="section-tag tag-services">❓ FAQ</span>
+    <h2 class="section-heading">Questions? Got answers.</h2>
+    <p class="section-sub">Here are the things people usually ask before we start working together.</p>
+  </div>
+
+  <div class="faq-list reveal">
+    {faqs.map((faq) => (
+      <div class="faq-item">
+        <button class="faq-question">
+          {faq.question}
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>{faq.answer}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

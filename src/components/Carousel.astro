@@ -1,0 +1,54 @@
+---
+const cards = [
+  { thumb: 'linear-gradient(135deg, #ff6b35, #ffd23f)', icon: '🛒', name: 'E-Commerce', type: 'Online stores that convert', tags: ['Shopify', 'Stripe', 'Next.js'] },
+  { thumb: 'linear-gradient(135deg, #4361ee, #e0c3fc)', icon: '📱', name: 'Mobile Apps', type: 'iOS & Android, one codebase', tags: ['React Native', 'Expo'] },
+  { thumb: 'linear-gradient(135deg, #1a1a2e, #4361ee)', icon: '📊', name: 'SaaS Dashboards', type: 'Analytics & admin panels', tags: ['React', 'TypeScript', 'PostgreSQL'] },
+  { thumb: 'linear-gradient(135deg, #b8f2e6, #ffa6c9)', icon: '🎨', name: 'Landing Pages', type: 'High-converting marketing sites', tags: ['Astro', 'GSAP', 'Tailwind'] },
+  { thumb: 'linear-gradient(135deg, #22c55e, #b8f2e6)', icon: '🔗', name: 'API & Backends', type: 'Scalable server infrastructure', tags: ['Node.js', 'Express', 'Firebase'] },
+  { thumb: 'linear-gradient(135deg, #ffd23f, #ff6b35)', icon: '⚡', name: 'Web Apps', type: 'Full-stack interactive platforms', tags: ['Next.js', 'Prisma', 'Auth'] },
+  { thumb: 'linear-gradient(135deg, #e0c3fc, #ffa6c9)', icon: '✨', name: 'UI/UX Design', type: 'Wireframes to polished mockups', tags: ['Figma', 'Prototyping'] },
+];
+---
+
+<div class="carousel-section">
+  <div class="carousel-header">
+    <span class="section-tag tag-work">✦ What I Build</span>
+    <h2 class="section-heading">Every flavor of digital</h2>
+    <p class="section-sub">From landing pages to full-stack platforms — here's the kind of stuff I love working on.</p>
+  </div>
+
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track">
+      {/* First set */}
+      {cards.map((card) => (
+        <div class="carousel-card">
+          <div class="carousel-thumb" style={`background: ${card.thumb};`}>{card.icon}</div>
+          <div class="carousel-card-info">
+            <div class="carousel-card-name">{card.name}</div>
+            <div class="carousel-card-type">{card.type}</div>
+            <div class="carousel-tags">
+              {card.tags.map((tag) => (
+                <span class="carousel-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+      {/* Duplicate set for infinite loop */}
+      {cards.map((card) => (
+        <div class="carousel-card">
+          <div class="carousel-thumb" style={`background: ${card.thumb};`}>{card.icon}</div>
+          <div class="carousel-card-info">
+            <div class="carousel-card-name">{card.name}</div>
+            <div class="carousel-card-type">{card.type}</div>
+            <div class="carousel-tags">
+              {card.tags.map((tag) => (
+                <span class="carousel-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

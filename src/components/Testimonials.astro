@@ -1,0 +1,56 @@
+---
+const reviews = [
+  {
+    text: "Adib didn't just build what we asked for — he understood what we actually needed. Our online orders tripled in the first month.",
+    avatarColor: 'var(--coral)',
+    initial: 'S',
+    name: 'Sarah Chen',
+    role: 'Founder, Freshly',
+  },
+  {
+    text: "Fast, communicative, and the end result was way better than I expected. He genuinely cares about the product, not just checking off tasks.",
+    avatarColor: 'var(--blue)',
+    initial: 'M',
+    name: 'Marcus Rivera',
+    role: 'CEO, Pulsetrack',
+  },
+  {
+    text: "Our investors were blown away by the dashboard. Adib turned a messy spreadsheet operation into something we're genuinely proud to demo.",
+    avatarColor: '#22c55e',
+    initial: 'J',
+    name: 'Jenna Park',
+    role: 'Co-founder, Arkitekt',
+  },
+  {
+    text: "We went from concept to a live landing page in 10 days. 47% conversion on the waitlist. Absolutely worth every penny.",
+    avatarColor: 'var(--pink)',
+    initial: 'A',
+    name: 'Alex Thornton',
+    role: 'Founder, Bloom Studio',
+  },
+];
+---
+
+<section id="reviews">
+  <div class="reveal">
+    <span class="section-tag tag-reviews">⭐ Kind Words</span>
+    <h2 class="section-heading">What clients say</h2>
+    <p class="section-sub">Don't just take my word for it — here's what people I've worked with have to say.</p>
+  </div>
+
+  <div class="reviews-scroll reveal">
+    {reviews.map((review) => (
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"{review.text}"</p>
+        <div class="review-author">
+          <div class="review-avatar" style={`background: ${review.avatarColor};`}>{review.initial}</div>
+          <div>
+            <div class="review-name">{review.name}</div>
+            <div class="review-role">{review.role}</div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
