@@ -46,6 +46,20 @@ const ogImage = new URL(image, Astro.url.origin);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Adib Thufail",
+      "url": String(baseURL),
+      "jobTitle": "Freelance Developer",
+      "description": description,
+      "email": "thufails505@gmail.com",
+      "sameAs": [
+        "https://github.com/Al-Mutawakkil",
+        "https://www.linkedin.com/in/thufailadib/"
+      ]
+    })} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
