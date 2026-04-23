@@ -190,7 +190,7 @@ export default function FlipCard() {
               <span className="hero-role">{current.role}</span>
               <span className="hero-sep">·</span>
               <span className="hero-dates">
-                {current.start} — {current.end}
+                {current.start} to {current.end}
               </span>
             </div>
             <p className="hero-desc">{current.description}</p>
@@ -204,7 +204,7 @@ export default function FlipCard() {
                     <span className="prev-sep">·</span>
                     <span className="prev-role">{p.role}</span>
                     <span className="prev-dates">
-                      {p.start} — {p.end}
+                      {p.start} to {p.end}
                     </span>
                   </div>
                 ))}
