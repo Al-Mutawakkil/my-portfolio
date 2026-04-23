@@ -1778,6 +1778,11 @@ section {
 /* ═══════════════════════════════════════
    HOW IT WORKS
 ═══════════════════════════════════════ */
+#how-it-works {
+  background: rgba(224, 195, 252, 0.12);
+  border-radius: 32px;
+}
+
 .hiw-steps {
   display: flex;
   align-items: flex-start;

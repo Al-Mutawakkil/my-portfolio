@@ -89,11 +89,9 @@ export default function HowItWorks() {
           <div className="hiw-step" key={step.number}>
             <div className="hiw-node-area">
               <div className="hiw-node">{step.number}</div>
-              {i < steps.length - 1 && (
-                <div className="hiw-line">
-                  <div className="hiw-line-fill" />
-                </div>
-              )}
+              <div className="hiw-line">
+                <div className="hiw-line-fill" />
+              </div>
             </div>
             <div className="hiw-text">
               <h3 className="hiw-step-title">{step.title}</h3>
