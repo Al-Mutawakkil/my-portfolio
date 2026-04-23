@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Work from '../components/Work.astro';
+import HowItWorks from '../components/HowItWorks.tsx';
 import About from '../components/About.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
@@ -20,6 +21,7 @@ import Footer from '../components/Footer.astro';
   <Nav />
   <Hero />
   <Work />
+  <HowItWorks client:load />
   <About />
   <CTA />
   <Footer />
