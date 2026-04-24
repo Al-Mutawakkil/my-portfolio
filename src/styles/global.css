@@ -175,7 +175,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 0.65rem 0.65rem 1.5rem;
+  padding: 0.5rem 1rem;
 }
 
 .nav-logo {
@@ -183,6 +183,15 @@ nav {
   font-weight: 700;
   font-size: 1.5rem;
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
 }
 
 .nav-links {
