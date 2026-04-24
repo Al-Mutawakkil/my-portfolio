@@ -6,12 +6,14 @@ import { Resvg } from '@resvg/resvg-js';
 const ROOT = resolve(import.meta.dirname, '..');
 const OUTPUT = resolve(ROOT, 'public/og-image.png');
 
-async function loadFont(family: 'Bricolage Grotesque' | 'Plus Jakarta Sans', weight: number) {
+async function loadFont(family: 'Bricolage Grotesque' | 'Plus Jakarta Sans' | 'Caveat', weight: number) {
   const urls: Record<string, string> = {
     'Bricolage Grotesque-800':
       'https://fonts.gstatic.com/s/bricolagegrotesque/v9/3y9U6as8bTXq_nANBjzKo3IeZx8z6up5BeSl5jBNz_19PpbpMXuECpwUxJBOm_OJWiaaD30YfKfjZZoLvZvlyM0.ttf',
     'Plus Jakarta Sans-500':
       'https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_m07NSg.ttf',
+    'Caveat-700':
+      'https://fonts.gstatic.com/s/caveat/v23/WnznHAc5bAfYB2QRah7pcpNvOx-pjRV6SII.ttf',
   };
   const key = `${family}-${weight}`;
   const url = urls[key];
@@ -21,13 +23,19 @@ async function loadFont(family: 'Bricolage Grotesque' | 'Plus Jakarta Sans', wei
   return Buffer.from(await res.arrayBuffer());
 }
 
+function loadIconBase64(): string {
+  const iconPath = resolve(ROOT, 'public/apple-touch-icon.png');
+  const data = readFileSync(iconPath);
+  return `data:image/png;base64,${data.toString('base64')}`;
+}
+
 const CORAL = '#FF6B35';
 const LAVENDER = '#C3B1E1';
 const YELLOW = '#FFD93D';
 const TEXT = '#1a1a1a';
 const BG = '#FAFAF7';
 
-const markup = {
+function buildMarkup(iconSrc: string) { return {
   type: 'div',
   props: {
     style: {
@@ -84,13 +92,31 @@ const markup = {
             {
               type: 'div',
               props: {
-                style: {
-                  fontFamily: 'Bricolage Grotesque',
-                  fontSize: 44,
-                  fontWeight: 800,
-                  color: TEXT,
-                },
-                children: 'adib.',
+                style: { display: 'flex', alignItems: 'center', gap: 16 },
+                children: [
+                  {
+                    type: 'img',
+                    props: {
+                      src: iconSrc,
+                      width: 52,
+                      height: 52,
+                      style: { borderRadius: 12 },
+                    },
+                  },
+                  {
+                    type: 'div',
+                    props: {
+                      style: {
+                        fontFamily: 'Caveat',
+                        fontSize: 52,
+                        fontWeight: 700,
+                        color: TEXT,
+                        lineHeight: 1,
+                      },
+                      children: 'adib.',
+                    },
+                  },
+                ],
               },
             },
             {
@@ -191,22 +217,27 @@ const markup = {
       },
     ],
   },
-};
+}; }
 
 async function main() {
   console.log('Loading fonts...');
-  const [bricolage, jakarta] = await Promise.all([
+  const [bricolage, jakarta, caveat] = await Promise.all([
     loadFont('Bricolage Grotesque', 800),
     loadFont('Plus Jakarta Sans', 500),
+    loadFont('Caveat', 700),
   ]);
 
+  console.log('Loading icon...');
+  const iconSrc = loadIconBase64();
+
   console.log('Rendering SVG via satori...');
-  const svg = await satori(markup as any, {
+  const svg = await satori(buildMarkup(iconSrc) as any, {
     width: 1200,
     height: 630,
     fonts: [
       { name: 'Bricolage Grotesque', data: bricolage, weight: 800, style: 'normal' },
       { name: 'Plus Jakarta Sans', data: jakarta, weight: 500, style: 'normal' },
+      { name: 'Caveat', data: caveat, weight: 700, style: 'normal' },
     ],
   });
 
