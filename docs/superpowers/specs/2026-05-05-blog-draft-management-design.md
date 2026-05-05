@@ -47,7 +47,6 @@ title: string           # Post title
 description: string     # One-line teaser shown on card
 date: date              # Publication date (YYYY-MM-DD)
 tags: string[]          # e.g. ["AI", "Hackathon", "Flutter"]
-source: string          # Learning context, e.g. "Anthropic Course", "Dicoding", "Work Project"
 cover: string           # Path to cover image, e.g. /blog/covers/my-post.jpg
 readTime: number        # Estimated read time in minutes (set manually)
 draft: boolean          # true = excluded from build output
@@ -81,7 +80,7 @@ Cover images are stored in `public/blog/covers/`. Format: jpg or webp, recommend
 2. **Cover image** — full width, rounded, real uploaded image
 3. **Tags** — all tags as uniform neutral pills (`#ece9e3` background, muted text, no highlighting)
 4. **Title** — Bricolage Grotesque, large
-5. **Meta row** — date · read time · source (e.g. "Anthropic Course")
+5. **Meta row** — date · read time
 6. **Post body** — rendered MDX inside a white card with rounded corners. Styles for: paragraphs, headings (h2/h3), blockquotes (coral left border), inline code, code blocks.
 7. **Footer** — handwriting "Thanks for reading ✦" on the left, "Also on Medium →" pill link on the right
 
