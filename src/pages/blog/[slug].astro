@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await getEntry('blog', slug!);
+if (!post) return Astro.redirect('/blog');
+
+const { Content } = await post.render();
+const { title, description, date, tags, cover, readTime, mediumUrl } = post.data;
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}).format(date);
+---
+
+<Layout title={`${title} | Adib`} description={description} image={cover}>
+  <Nav />
+  <main class="post-page">
+    <div class="post-container">
+      <a href="/blog" class="back-link">← All posts</a>
+
+      <img class="post-cover" src={cover} alt={title} />
+
+      <div class="post-header">
+        <div class="post-tags">
+          {tags.map((tag) => <span class="post-tag">{tag}</span>)}
+        </div>
+        <h1 class="post-title">{title}</h1>
+        <div class="post-meta">
+          <span>{formattedDate}</span>
+          <span class="post-meta-sep">·</span>
+          <span>{readTime} min read</span>
+        </div>
+      </div>
+
+      <div class="post-body">
+        <Content />
+      </div>
+
+      <div class="post-footer">
+        <span class="post-thanks">Thanks for reading ✦</span>
+        {mediumUrl && (
+          <a href={mediumUrl} target="_blank" rel="noopener noreferrer" class="medium-link">
+            Also on Medium →
+          </a>
+        )}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
