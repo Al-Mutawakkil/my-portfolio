@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import TagFilter from '../../components/TagFilter.tsx';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+const sorted = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const allTags = [...new Set(sorted.flatMap((p) => p.data.tags))];
+
+const posts = sorted.map((p) => ({
+  slug: p.slug,
+  title: p.data.title,
+  description: p.data.description,
+  date: p.data.date.toISOString(),
+  tags: p.data.tags,
+  cover: p.data.cover,
+  readTime: p.data.readTime,
+}));
+---
+
+<Layout
+  title="Blog | Adib"
+  description="Learning notes and reflections from courses, projects, and everything in between."
+>
+  <Nav />
+  <main class="blog-page">
+    <div class="blog-page-header reveal">
+      <span class="section-tag tag-blog">✦ Blog</span>
+      <h1 class="section-heading">Writing</h1>
+      <p class="section-sub">
+        Learning notes and reflections from courses, projects, and everything in between.
+      </p>
+    </div>
+    <div class="reveal">
+      <TagFilter posts={posts} allTags={allTags} client:load />
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+  reveals.forEach((el) => observer.observe(el));
+</script>

@@ -2209,3 +2209,22 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════════
+   BLOG PAGE
+═══════════════════════════════════════ */
+.blog-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 2rem 5rem;
+}
+
+.blog-page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.tag-blog {
+  background: var(--lavender);
+  color: var(--blue);
+}
