@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+const latest = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+
+{latest.length > 0 && (
+  <section class="blog-teaser">
+    <div class="reveal blog-teaser-header">
+      <span class="section-tag tag-blog">✦ From the Blog</span>
+      <h2 class="section-heading">Latest writing</h2>
+      <p class="section-sub">Sharing what I learn, as I learn it.</p>
+    </div>
+    <div class="blog-grid reveal">
+      {latest.map((post) => (
+        <BlogCard
+          slug={post.slug}
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date}
+          tags={post.data.tags}
+          cover={post.data.cover}
+          readTime={post.data.readTime}
+        />
+      ))}
+    </div>
+    <div class="reveal blog-teaser-cta">
+      <a href="/blog" class="nav-cta">See all posts →</a>
+    </div>
+  </section>
+)}
