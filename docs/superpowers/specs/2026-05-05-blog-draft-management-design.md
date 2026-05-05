@@ -47,6 +47,7 @@ title: string           # Post title
 description: string     # One-line teaser shown on card
 date: date              # Publication date (YYYY-MM-DD)
 tags: string[]          # e.g. ["AI", "Hackathon", "Flutter"]
+source: string          # Learning context, e.g. "Anthropic Course", "Dicoding", "Work Project"
 cover: string           # Path to cover image, e.g. /blog/covers/my-post.jpg
 readTime: number        # Estimated read time in minutes (set manually)
 draft: boolean          # true = excluded from build output
