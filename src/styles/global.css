@@ -2396,6 +2396,22 @@ footer {
   text-underline-offset: 3px;
 }
 
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin: 1.25rem 0;
+}
+
+.post-body strong {
+  font-weight: 700;
+}
+
+.post-body em {
+  font-style: italic;
+}
+
 /* ═══════════════════════════════════════
    POST FOOTER
 ═══════════════════════════════════════ */
