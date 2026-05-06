@@ -29,8 +29,10 @@ const latest = allPosts
         />
       ))}
     </div>
-    <div class="reveal blog-teaser-cta">
-      <a href="/blog" class="nav-cta">See all posts →</a>
-    </div>
+    {allPosts.length > 3 && (
+      <div class="reveal blog-teaser-cta">
+        <a href="/blog" class="nav-cta">See all posts →</a>
+      </div>
+    )}
   </section>
 )}
