@@ -2182,11 +2182,57 @@ footer {
   border-color: var(--text);
 }
 
-.tag-empty {
+.blog-empty-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.blog-empty-icon {
+  color: var(--text-muted);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.blog-empty-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.blog-empty-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.blog-empty-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 4rem 2rem;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.9rem;
-  padding: 3rem 0;
+}
+
+.blog-empty-tag-icon {
+  font-size: 1.5rem;
+  color: var(--coral);
+  opacity: 0.5;
+}
+
+.blog-empty-tag p {
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.blog-empty-tag strong {
+  color: var(--text);
 }
 
 /* ═══════════════════════════════════════
