@@ -31,7 +31,7 @@ function BlogEmptyAll() {
         </svg>
       </div>
       <h3 className="blog-empty-heading">Nothing published yet</h3>
-      <p className="blog-empty-sub">I'm writing — come back soon.</p>
+      <p className="blog-empty-sub">I'm writing. Come back soon.</p>
     </div>
   );
 }
