@@ -2,8 +2,10 @@
 type Project = {
   number: string;
   name: string;
+  type: string;
   description: string;
   tags: string[];
+  proof: string[];
   image: string;
   device: 'web' | 'mobile';
 };
@@ -12,32 +14,44 @@ const projects: Project[] = [
   {
     number: '01',
     name: 'Karmaclub',
-    description: 'Financing and project investment platform: admin dashboard, entrepreneur portal, and investor-facing funding flows.',
-    tags: ['Bubble.io'],
+    type: 'Financing platform',
+    description:
+      'Admin dashboard, entrepreneur portal, and investor-facing funding flows for project investment.',
+    tags: ['Bubble.io', 'Dashboard', 'Investment flows'],
+    proof: ['Investor journey', 'Admin workflows', 'Funding pipeline'],
     image: '/projects/karmaclub.jpg',
     device: 'web',
   },
   {
     number: '02',
     name: 'YOLO Padel',
-    description: 'Multi-venue padel court booking with online payments, dynamic pricing, RBAC, and an admin dashboard.',
-    tags: ['Next.js', 'Typescript', 'Prisma', 'Xendit', 'PostgreSQL'],
+    type: 'Booking platform',
+    description:
+      'Multi-venue padel court booking with online payments, dynamic pricing, RBAC, and an admin dashboard.',
+    tags: ['Next.js', 'Prisma', 'Xendit', 'PostgreSQL'],
+    proof: ['Court booking', 'Payments', 'Role-based admin'],
     image: '/projects/yolo-padel.jpg',
     device: 'web',
   },
   {
     number: '03',
     name: 'AYANA Rewards',
-    description: 'Offline-first loyalty points issuance for hotel staff, with AI-powered receipt OCR via Gemini and background sync.',
+    type: 'Mobile loyalty app',
+    description:
+      'Offline-first loyalty points issuance for hotel staff, with AI-powered receipt OCR and background sync.',
     tags: ['Flutter', 'BLoC', 'Gemini'],
+    proof: ['Offline-first', 'Receipt OCR', 'Background sync'],
     image: '/projects/ayana-rewards.png',
     device: 'mobile',
   },
   {
     number: '04',
     name: 'Swasana Wedding',
-    description: 'Wedding venue booking management with an end-to-end leads pipeline for the sales team.',
+    type: 'Venue sales tool',
+    description:
+      'Wedding venue booking management with an end-to-end leads pipeline for the sales team.',
     tags: ['Next.js', 'Fullstack', 'PostgreSQL'],
+    proof: ['Lead pipeline', 'Venue booking', 'Sales workflow'],
     image: '/projects/swasana.jpg',
     device: 'web',
   },
@@ -47,43 +61,228 @@ const projects: Project[] = [
 <section id="work">
   <div class="reveal work-header">
     <span class="section-tag tag-work">✦ Selected Work</span>
-    <h2 class="section-heading">Stuff I've built</h2>
-    <p class="section-sub">Real projects, real results. Each one solved a specific problem for a specific person. Yours could be next.</p>
+    <h2 class="section-heading">Products I've shipped</h2>
+    <p class="section-sub">
+      A closer look at real platforms, booking flows, dashboards, and mobile tools built for actual teams.
+    </p>
   </div>
 
-  <div class="projects-grid">
-    {projects.map((project) => (
-      <div class="project-card reveal">
-        <div class={`project-thumb device-${project.device}`}>
-          {project.device === 'web' ? (
-            <div class="browser-frame">
-              <div class="browser-bar">
-                <span class="browser-dot dot-red"></span>
-                <span class="browser-dot dot-yellow"></span>
-                <span class="browser-dot dot-green"></span>
+  <div class="work-showcase reveal" data-work-showcase>
+    <div class="work-showcase-stage" aria-live="polite">
+      {projects.map((project, index) => (
+        <article
+          class={`work-showcase-panel${index === 0 ? ' active' : ''}`}
+          data-panel={index}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <div class={`work-showcase-visual device-${project.device}`}>
+            {project.device === 'web' ? (
+              <div class="showcase-browser">
+                <div class="showcase-browser-bar">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <img
+                  src={project.image}
+                  alt={`${project.name} screenshot`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
               </div>
-              <img src={project.image} alt={project.name} class="browser-screen" loading="lazy" />
+            ) : (
+              <div class="showcase-phone-wrap">
+                <img class="showcase-phone-blur" src={project.image} alt="" aria-hidden="true" loading="lazy" />
+                <div class="showcase-phone">
+                  <img src={project.image} alt={`${project.name} app screenshot`} loading="lazy" />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div class="work-showcase-copy">
+            <div class="work-project-eyebrow">{project.number} / {project.type}</div>
+            <h3>{project.name}</h3>
+            <p>{project.description}</p>
+            <div class="work-proof-grid">
+              {project.proof.map((item) => <span>{item}</span>)}
+            </div>
+            <div class="project-tags">
+              {project.tags.map((tag) => <span class="p-tag">{tag}</span>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="work-showcase-tabs" role="tablist" aria-label="Selected work projects">
+      {projects.map((project, index) => (
+        <button
+          class={`work-showcase-tab${index === 0 ? ' active' : ''}`}
+          type="button"
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          data-tab={index}
+        >
+          <span>{project.number}</span>
+          <strong>{project.name}</strong>
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="work-mobile-stack reveal" data-work-mobile-stack aria-label="Selected work projects">
+    <div class="work-mobile-stack-stage">
+      {projects.map((project, index) => (
+        <article
+          class="work-mobile-card"
+          data-mobile-card={index}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <div class={`work-mobile-thumb device-${project.device}`}>
+          {project.device === 'web' ? (
+            <div class="mobile-browser">
+              <div class="mobile-browser-bar">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <img src={project.image} alt={`${project.name} screenshot`} loading="lazy" />
             </div>
           ) : (
-            <div class="phone-stage">
-              <img src={project.image} alt="" class="phone-backdrop" aria-hidden="true" loading="lazy" />
-              <div class="phone-frame">
-                <img src={project.image} alt={project.name} class="phone-screen" loading="lazy" />
+            <div class="mobile-phone-stage">
+              <img src={project.image} alt="" class="mobile-phone-blur" aria-hidden="true" loading="lazy" />
+              <div class="mobile-phone-frame">
+                <img src={project.image} alt={`${project.name} app screenshot`} loading="lazy" />
               </div>
             </div>
           )}
-          <span class="project-number">{project.number}</span>
-        </div>
-        <div class="project-info">
-          <div class="project-name">{project.name}</div>
-          <div class="project-description">{project.description}</div>
-          <div class="project-tags">
-            {project.tags.map((tag) => (
-              <span class="p-tag">{tag}</span>
-            ))}
           </div>
-        </div>
-      </div>
-    ))}
+          <div class="work-mobile-copy">
+            <div class="work-project-eyebrow">{project.number} / {project.type}</div>
+            <h3>{project.name}</h3>
+            <p>{project.description}</p>
+            <div class="project-tags">
+              {project.proof.map((item) => <span class="p-tag">{item}</span>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="work-mobile-controls">
+      <button type="button" data-mobile-prev aria-label="Previous project">Prev</button>
+      <span data-mobile-status>1 / {projects.length}</span>
+      <button type="button" data-mobile-next aria-label="Next project">Next</button>
+    </div>
   </div>
 </section>
+
+<script>
+  const root = document.querySelector('[data-work-showcase]');
+  if (root) {
+    const tabs = Array.from(root.querySelectorAll<HTMLElement>('[data-tab]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-panel]'));
+
+    const setActive = (nextIndex: number) => {
+      tabs.forEach((tab, index) => {
+        const active = index === nextIndex;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', String(active));
+      });
+
+      panels.forEach((panel, index) => {
+        const active = index === nextIndex;
+        panel.classList.toggle('active', active);
+        panel.setAttribute('aria-hidden', String(!active));
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        setActive(Number(tab.dataset.tab));
+      });
+    });
+  }
+
+  const mobileStack = document.querySelector('[data-work-mobile-stack]');
+  if (mobileStack) {
+    const cards = Array.from(mobileStack.querySelectorAll<HTMLElement>('[data-mobile-card]'));
+    const prev = mobileStack.querySelector<HTMLButtonElement>('[data-mobile-prev]');
+    const next = mobileStack.querySelector<HTMLButtonElement>('[data-mobile-next]');
+    const status = mobileStack.querySelector<HTMLElement>('[data-mobile-status]');
+    let activeIndex = 0;
+    let startX = 0;
+    let startY = 0;
+    let dragX = 0;
+    let dragging = false;
+
+    const updateStack = () => {
+      cards.forEach((card, index) => {
+        const offset = (index - activeIndex + cards.length) % cards.length;
+        card.dataset.offset = String(offset);
+        card.setAttribute('aria-hidden', String(offset !== 0));
+        card.style.transform = '';
+      });
+
+      if (status) status.textContent = `${activeIndex + 1} / ${cards.length}`;
+    };
+
+    const goTo = (nextIndex: number) => {
+      activeIndex = (nextIndex + cards.length) % cards.length;
+      updateStack();
+    };
+
+    const activeCard = () => cards[activeIndex];
+
+    const onPointerDown = (event: PointerEvent) => {
+      const card = activeCard();
+      if (!card) return;
+      dragging = true;
+      startX = event.clientX;
+      startY = event.clientY;
+      dragX = 0;
+      card.setPointerCapture(event.pointerId);
+      card.classList.add('dragging');
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (!dragging) return;
+      const deltaX = event.clientX - startX;
+      const deltaY = event.clientY - startY;
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 12) return;
+      dragX = deltaX;
+      const card = activeCard();
+      if (!card) return;
+      const rotate = Math.max(-5, Math.min(5, dragX / 28));
+      card.style.transform = `translateX(${dragX}px) rotate(${rotate}deg)`;
+    };
+
+    const onPointerUp = (event: PointerEvent) => {
+      if (!dragging) return;
+      const card = activeCard();
+      dragging = false;
+      if (card) {
+        card.releasePointerCapture(event.pointerId);
+        card.classList.remove('dragging');
+        card.style.transform = '';
+      }
+
+      if (Math.abs(dragX) > 70) {
+        goTo(activeIndex + (dragX < 0 ? 1 : -1));
+      } else {
+        updateStack();
+      }
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener('pointerdown', onPointerDown);
+      card.addEventListener('pointermove', onPointerMove);
+      card.addEventListener('pointerup', onPointerUp);
+      card.addEventListener('pointercancel', onPointerUp);
+    });
+
+    prev?.addEventListener('click', () => goTo(activeIndex - 1));
+    next?.addEventListener('click', () => goTo(activeIndex + 1));
+    updateStack();
+  }
+</script>
