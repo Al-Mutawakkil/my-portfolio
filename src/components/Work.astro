@@ -215,19 +215,28 @@ const projects: Project[] = [
     let startY = 0;
     let dragX = 0;
     let dragging = false;
+    let stackDirection: 'next' | 'prev' = 'next';
 
-    const updateStack = () => {
+    const getOffset = (index: number) => {
+      if (stackDirection === 'prev') {
+        return (activeIndex - index + cards.length) % cards.length;
+      }
+      return (index - activeIndex + cards.length) % cards.length;
+    };
+
+    const updateStack = (resetTransform = true) => {
       cards.forEach((card, index) => {
-        const offset = (index - activeIndex + cards.length) % cards.length;
+        const offset = getOffset(index);
         card.dataset.offset = String(offset);
         card.setAttribute('aria-hidden', String(offset !== 0));
-        card.style.transform = '';
+        if (resetTransform) card.style.transform = '';
       });
 
       if (status) status.textContent = `${activeIndex + 1} / ${cards.length}`;
     };
 
-    const goTo = (nextIndex: number) => {
+    const goTo = (nextIndex: number, direction: 'next' | 'prev') => {
+      stackDirection = direction;
       activeIndex = (nextIndex + cards.length) % cards.length;
       updateStack();
     };
@@ -251,6 +260,11 @@ const projects: Project[] = [
       const deltaY = event.clientY - startY;
       if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 12) return;
       dragX = deltaX;
+      const nextDirection = dragX < 0 ? 'next' : 'prev';
+      if (Math.abs(dragX) > 12 && nextDirection !== stackDirection) {
+        stackDirection = nextDirection;
+        updateStack(false);
+      }
       const card = activeCard();
       if (!card) return;
       const rotate = Math.max(-5, Math.min(5, dragX / 28));
@@ -268,7 +282,7 @@ const projects: Project[] = [
       }
 
       if (Math.abs(dragX) > 70) {
-        goTo(activeIndex + (dragX < 0 ? 1 : -1));
+        goTo(activeIndex + (dragX < 0 ? 1 : -1), dragX < 0 ? 'next' : 'prev');
       } else {
         updateStack();
       }
@@ -281,8 +295,8 @@ const projects: Project[] = [
       card.addEventListener('pointercancel', onPointerUp);
     });
 
-    prev?.addEventListener('click', () => goTo(activeIndex - 1));
-    next?.addEventListener('click', () => goTo(activeIndex + 1));
+    prev?.addEventListener('click', () => goTo(activeIndex - 1, 'prev'));
+    next?.addEventListener('click', () => goTo(activeIndex + 1, 'next'));
     updateStack();
   }
 </script>
