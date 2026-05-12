@@ -16,7 +16,7 @@ const steps = [
   {
     number: '03',
     title: 'Build & ship',
-    duration: 'Sprint-based',
+    duration: 'Build phase',
     description: 'I build fast, share working previews, handle feedback, and get the product ready for real users.',
     deliverable: 'Production-ready launch',
   },
