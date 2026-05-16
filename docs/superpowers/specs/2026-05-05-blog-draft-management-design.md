@@ -2,13 +2,13 @@
 
 **Date:** 2026-05-05
 **Status:** Approved
-**Project:** thufailadib.vercel.app
+**Project:** thufailadib.com
 
 ---
 
 ## Overview
 
-Add a `/blog` page to the existing Astro portfolio at `thufailadib.vercel.app`. Posts document the author's learning journey across online courses (Dicoding, Anthropic), work agency projects, and personal explorations — combining structured learning notes and personal reflective essays.
+Add a `/blog` page to the existing Astro portfolio at `thufailadib.com`. Posts document the author's learning journey across online courses (Dicoding, Anthropic), work agency projects, and personal explorations — combining structured learning notes and personal reflective essays.
 
 Draft management is handled in Notion (existing tool). The portfolio blog is the canonical reading experience. Medium receives a manual copy of each published post.
 
