@@ -159,22 +159,27 @@ function buildMarkup(iconSrc: string) { return {
               props: {
                 style: {
                   fontFamily: 'Bricolage Grotesque',
-                  fontSize: 96,
+                  fontSize: 76,
                   fontWeight: 800,
                   lineHeight: 1.02,
-                  letterSpacing: '-0.03em',
+                  letterSpacing: 0,
                   color: TEXT,
                   display: 'flex',
                   flexWrap: 'wrap',
-                  gap: '0 24px',
+                  gap: '0 18px',
                 },
                 children: [
-                  'Developer who ships',
                   {
                     type: 'span',
                     props: {
-                      style: { color: CORAL },
-                      children: 'real products.',
+                      children: 'Thufail Adib',
+                    },
+                  },
+                  {
+                    type: 'span',
+                    props: {
+                      style: { color: CORAL, marginLeft: 18 },
+                      children: 'Al Mutawakkil',
                     },
                   },
                 ],
@@ -191,7 +196,7 @@ function buildMarkup(iconSrc: string) { return {
                   lineHeight: 1.4,
                 },
                 children:
-                  'Full-stack product engineer. Web, mobile, and Go backends for startups and small businesses.',
+                  'Full-stack developer building websites, web apps, dashboards, and mobile apps for startups and small businesses.',
               },
             },
           ],
