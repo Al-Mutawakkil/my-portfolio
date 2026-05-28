@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = 'Thufail Adib | Developer Who Ships Real Products',
-  description = 'I build websites, apps, and SaaS tools that actually work. Fast turnaround, no bloat, no fluff. Based anywhere, building for everyone.',
+  title = 'Thufail Adib Al Mutawakkil | Full-Stack Developer for Websites, Web Apps, and Mobile Apps',
+  description = 'Thufail Adib Al Mutawakkil is a freelance full-stack developer from Indonesia building websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.',
   image = '/og-image.png',
 } = Astro.props;
 
@@ -26,7 +26,7 @@ const ogImage = new URL(image, Astro.url.origin);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="Adib Thufail" />
+    <meta name="author" content="Thufail Adib Al Mutawakkil" />
     <meta name="theme-color" content="#faf7f2" />
     <link rel="canonical" href={canonicalURL} />
 
@@ -37,7 +37,7 @@ const ogImage = new URL(image, Astro.url.origin);
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Adib Thufail" />
+    <meta property="og:site_name" content="Thufail Adib Al Mutawakkil" />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -49,9 +49,15 @@ const ogImage = new URL(image, Astro.url.origin);
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "Adib Thufail",
+      "name": "Thufail Adib Al Mutawakkil",
+      "alternateName": [
+        "Adib",
+        "Thufail Adib",
+        "Adib Al Mutawakkil",
+        "Al-Mutawakkil"
+      ],
       "url": String(baseURL),
-      "jobTitle": "Freelance Developer",
+      "jobTitle": "Freelance Full-Stack Developer",
       "description": description,
       "email": "thufails505@gmail.com",
       "sameAs": [

@@ -35,11 +35,26 @@ const stack = [
 ] as const;
 
 const slides = [
-  '/images/blue_selfie.jpg',
-  '/images/runner_surakarta.jpg',
-  '/images/cyclist_aeon.jpg',
-  '/images/runner_aeon.jpg',
-  '/images/trail_mt_gede.jpg',
+  {
+    src: '/images/blue_selfie.jpg',
+    alt: 'Thufail Adib Al Mutawakkil portrait',
+  },
+  {
+    src: '/images/runner_surakarta.jpg',
+    alt: 'Thufail Adib Al Mutawakkil running in Surakarta',
+  },
+  {
+    src: '/images/cyclist_aeon.jpg',
+    alt: 'Thufail Adib Al Mutawakkil cycling',
+  },
+  {
+    src: '/images/runner_aeon.jpg',
+    alt: 'Thufail Adib Al Mutawakkil after a run',
+  },
+  {
+    src: '/images/trail_mt_gede.jpg',
+    alt: 'Thufail Adib Al Mutawakkil hiking Mount Gede',
+  },
 ];
 
 const INTERVAL = 8000;
@@ -128,10 +143,10 @@ export default function FlipCard() {
             ) : (
               slides.map((src, i) => (
                 <div
-                  key={src}
+                  key={src.src}
                   className={`carousel-slide${i === currentSlide ? ' active' : ''}`}
                 >
-                  <img src={src} alt={`Photo ${i + 1}`} loading="lazy" />
+                  <img src={src.src} alt={src.alt} loading="lazy" />
                 </div>
               ))
             )}
