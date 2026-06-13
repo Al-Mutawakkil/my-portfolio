@@ -37,12 +37,15 @@ const faqs = [
     </p>
   </div>
 
-  <div class="geo-faq-grid reveal">
-    {faqs.map((item) => (
-      <article class="geo-faq-item">
-        <h3>{item.question}</h3>
+  <div class="geo-faq-accordion reveal">
+    {faqs.map((item, index) => (
+      <details class="geo-faq-item" open={index === 0}>
+        <summary>
+          <span>{item.question}</span>
+          <span class="geo-faq-icon" aria-hidden="true">+</span>
+        </summary>
         <p>{item.answer}</p>
-      </article>
+      </details>
     ))}
   </div>
 </section>

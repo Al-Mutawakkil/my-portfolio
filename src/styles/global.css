@@ -829,6 +829,7 @@ nav {
 .tag-services { background: #eef1ff; color: var(--blue); }
 .tag-about { background: #f0faf5; color: #22c55e; }
 .tag-reviews { background: #fef9e7; color: #d4940a; }
+.tag-faq { background: #f3f0ff; color: #7c3aed; }
 
 /* ═══════════════════════════════════════
    STACK TAGS (About section)
@@ -1260,7 +1261,7 @@ section {
 
 .work-showcase-stage {
   position: relative;
-  min-height: 560px;
+  min-height: 640px;
   overflow: hidden;
   border-radius: calc(var(--radius) - 6px);
   background:
@@ -1276,7 +1277,7 @@ section {
   grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.75fr);
   gap: 2rem;
   align-items: center;
-  padding: clamp(1.25rem, 3vw, 3rem);
+  padding: clamp(1.25rem, 3vw, 3rem) clamp(1.25rem, 3vw, 3rem) clamp(2rem, 4vw, 4rem);
   opacity: 0;
   pointer-events: none;
   transform: translateX(20px);
@@ -2181,7 +2182,7 @@ footer {
   }
 
   .work-showcase-stage {
-    min-height: 760px;
+    min-height: 820px;
   }
 
   .work-showcase-panel {
@@ -2788,23 +2789,66 @@ footer {
   margin-bottom: 2rem;
 }
 
-.geo-faq-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
+.geo-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 820px;
 }
 
 .geo-faq-item {
   background: var(--bg-card);
   border: 1.5px solid #ece9e3;
   border-radius: var(--radius);
-  padding: 1.35rem;
+  overflow: hidden;
+  transition: border-color 0.2s var(--smooth);
 }
 
-.geo-faq-item h3 {
+.geo-faq-item[open] {
+  border-color: rgba(26, 26, 46, 0.18);
+}
+
+.geo-faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.35rem;
+  cursor: pointer;
+  list-style: none;
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin: 0 0 0.65rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  user-select: none;
+  transition: background 0.15s var(--smooth);
+}
+
+.geo-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.geo-faq-item summary:hover {
+  background: rgba(26, 26, 46, 0.03);
+}
+
+.geo-faq-icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  border: 1px solid #ece9e3;
+  border-radius: 50%;
+  transition: transform 0.25s var(--smooth), color 0.2s;
+  line-height: 1;
+}
+
+.geo-faq-item[open] .geo-faq-icon {
+  transform: rotate(45deg);
   color: var(--text);
 }
 
@@ -2812,15 +2856,13 @@ footer {
   color: var(--text-muted);
   line-height: 1.7;
   margin: 0;
+  padding: 0 1.35rem 1.25rem;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
   .geo-faq {
     padding: 4rem 1.25rem;
-  }
-
-  .geo-faq-grid {
-    grid-template-columns: 1fr;
   }
 }
 
