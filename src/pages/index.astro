@@ -7,11 +7,97 @@ import HowItWorks from '../components/HowItWorks.tsx';
 import About from '../components/About.astro';
 import Testimonials from '../components/Testimonials.astro';
 import CTA from '../components/CTA.astro';
+import GeoFAQ from '../components/GeoFAQ.astro';
 import BlogTeaser from '../components/BlogTeaser.astro';
 import Footer from '../components/Footer.astro';
+
+const projectStructuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: 'Karmaclub',
+    creator: { '@id': '/#person' },
+    description: 'Admin dashboard, entrepreneur portal, and investor-facing funding flows for a project investment platform.',
+    keywords: 'dashboard, investment platform, admin workflows, funding pipeline',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'YOLO Padel',
+    creator: { '@id': '/#person' },
+    applicationCategory: 'BusinessApplication',
+    description: 'Multi-venue padel court booking platform with online payments, dynamic pricing, RBAC, and an admin dashboard.',
+    keywords: 'booking platform, payments, dashboard, court management',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'AYANA Rewards',
+    creator: { '@id': '/#person' },
+    applicationCategory: 'MobileApplication',
+    description: 'Offline-first mobile loyalty app for hotel staff with AI-powered receipt OCR and background sync.',
+    keywords: 'mobile app, loyalty app, OCR, offline-first, background sync',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Swasana Wedding',
+    creator: { '@id': '/#person' },
+    applicationCategory: 'BusinessApplication',
+    description: 'Wedding venue booking management with an end-to-end leads pipeline for the sales team.',
+    keywords: 'booking management, sales pipeline, venue management, web app',
+  },
+];
+
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does Thufail Adib Al Mutawakkil build?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Thufail Adib Al Mutawakkil builds websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Who does Adib usually work with?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Adib usually works with founders, lean teams, startups, small businesses, and teams that need practical software shipped quickly.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What kind of web apps can Adib build?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Adib can build booking platforms, dashboards, admin panels, payment flows, internal tools, portals, and product MVPs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What technologies does Adib use?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Adib works with tools such as Next.js, React, TypeScript, Flutter, PostgreSQL, Prisma, and AI APIs depending on the project needs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How can someone hire Adib?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You can email Adib or book a call to discuss the project scope, timeline, technical needs, and whether the fit is right before the build starts.',
+      },
+    },
+  ],
+};
 ---
 
-<Layout>
+<Layout structuredData={[...projectStructuredData, faqStructuredData]}>
   <!-- Floating shapes -->
   <div class="shapes-layer">
     <div class="shape shape-1"></div>
@@ -24,6 +110,7 @@ import Footer from '../components/Footer.astro';
   <Work />
   <HowItWorks />
   <About />
+  <GeoFAQ />
   <CTA />
   <BlogTeaser />
   <Footer />

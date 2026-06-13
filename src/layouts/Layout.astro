@@ -6,17 +6,66 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = 'Thufail Adib Al Mutawakkil | Full-Stack Developer for Websites, Web Apps, and Mobile Apps',
   description = 'Thufail Adib Al Mutawakkil is a freelance full-stack developer from Indonesia building websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.',
   image = '/og-image.png',
+  structuredData = [],
 } = Astro.props;
 
 const baseURL = Astro.site ?? new URL(Astro.url.origin);
 const canonicalURL = new URL(Astro.url.pathname, baseURL);
 const ogImage = new URL(image, Astro.url.origin);
+const siteURL = new URL('/', baseURL);
+const personId = new URL('/#person', baseURL);
+const websiteId = new URL('/#website', baseURL);
+const defaultStructuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': String(personId),
+    name: 'Thufail Adib Al Mutawakkil',
+    alternateName: ['Adib', 'Thufail Adib', 'Adib Al Mutawakkil', 'Al-Mutawakkil', 'adib.'],
+    url: String(siteURL),
+    image: String(new URL('/apple-touch-icon.png', baseURL)),
+    jobTitle: 'Freelance Full-Stack Developer',
+    description:
+      'Thufail Adib Al Mutawakkil is a freelance full-stack developer from Indonesia who builds websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.',
+    email: 'mailto:thufails505@gmail.com',
+    knowsAbout: [
+      'Full-stack web development',
+      'Website development',
+      'Web app development',
+      'Dashboard development',
+      'Internal tools',
+      'Mobile app development',
+      'SEO',
+      'AI search',
+    ],
+    sameAs: [
+      'https://github.com/Al-Mutawakkil',
+      'https://www.linkedin.com/in/thufailadib/',
+      'https://medium.com/@al-mutawakkil',
+      'https://cal.com/thufailadib',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': String(websiteId),
+    name: 'Thufail Adib Al Mutawakkil',
+    alternateName: 'adib.',
+    url: String(siteURL),
+    description,
+    publisher: { '@id': String(personId) },
+    inLanguage: 'en',
+  },
+];
+const pageStructuredData = Array.isArray(structuredData) ? structuredData : [structuredData];
+const allStructuredData = [...defaultStructuredData, ...pageStructuredData];
 ---
 
 <!doctype html>
@@ -46,25 +95,9 @@ const ogImage = new URL(image, Astro.url.origin);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Thufail Adib Al Mutawakkil",
-      "alternateName": [
-        "Adib",
-        "Thufail Adib",
-        "Adib Al Mutawakkil",
-        "Al-Mutawakkil"
-      ],
-      "url": String(baseURL),
-      "jobTitle": "Freelance Full-Stack Developer",
-      "description": description,
-      "email": "thufails505@gmail.com",
-      "sameAs": [
-        "https://github.com/Al-Mutawakkil",
-        "https://www.linkedin.com/in/thufailadib/"
-      ]
-    })} />
+    {allStructuredData.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

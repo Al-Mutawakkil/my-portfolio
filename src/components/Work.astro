@@ -6,6 +6,8 @@ type Project = {
   description: string;
   tags: string[];
   proof: string[];
+  role: string;
+  outcome: string;
   image: string;
   device: 'web' | 'mobile';
 };
@@ -19,6 +21,8 @@ const projects: Project[] = [
       'Admin dashboard, entrepreneur portal, and investor-facing funding flows for a project investment platform.',
     tags: ['Bubble.io', 'Dashboard', 'Investment flows'],
     proof: ['Investor journey', 'Admin workflows', 'Funding pipeline'],
+    role: 'Full-stack builder',
+    outcome: 'Centralized funding, investor, and admin workflows into one platform.',
     image: '/projects/karmaclub.jpg',
     device: 'web',
   },
@@ -30,6 +34,8 @@ const projects: Project[] = [
       'Multi-venue padel court booking platform with online payments, dynamic pricing, RBAC, and an admin dashboard.',
     tags: ['Next.js', 'Prisma', 'Xendit', 'PostgreSQL'],
     proof: ['Court booking', 'Payments', 'Role-based admin'],
+    role: 'Full-stack developer',
+    outcome: 'Helped venue teams manage court bookings, payments, pricing, and operations in one system.',
     image: '/projects/yolo-padel.jpg',
     device: 'web',
   },
@@ -41,6 +47,8 @@ const projects: Project[] = [
       'Offline-first mobile loyalty app for hotel staff, with AI-powered receipt OCR and background sync.',
     tags: ['Flutter', 'BLoC', 'Gemini'],
     proof: ['Offline-first', 'Receipt OCR', 'Background sync'],
+    role: 'Mobile app developer',
+    outcome: 'Made staff reward submissions more reliable with offline support, OCR, and background sync.',
     image: '/projects/ayana-rewards.png',
     device: 'mobile',
   },
@@ -52,6 +60,8 @@ const projects: Project[] = [
       'Wedding venue booking management with an end-to-end leads pipeline for the sales team.',
     tags: ['Next.js', 'Fullstack', 'PostgreSQL'],
     proof: ['Lead pipeline', 'Venue booking', 'Sales workflow'],
+    role: 'Full-stack developer',
+    outcome: 'Gave the sales team a clearer pipeline for wedding venue leads and booking management.',
     image: '/projects/swasana.jpg',
     device: 'web',
   },
@@ -105,6 +115,10 @@ const projects: Project[] = [
             <p>{project.description}</p>
             <div class="work-proof-grid">
               {project.proof.map((item) => <span>{item}</span>)}
+            </div>
+            <div class="work-detail-list" aria-label={`${project.name} project details`}>
+              <p><strong>Role</strong><span>{project.role}</span></p>
+              <p><strong>Outcome</strong><span>{project.outcome}</span></p>
             </div>
             <div class="project-tags">
               {project.tags.map((tag) => <span class="p-tag">{tag}</span>)}
@@ -163,6 +177,10 @@ const projects: Project[] = [
             <p>{project.description}</p>
             <div class="project-tags">
               {project.proof.map((item) => <span class="p-tag">{item}</span>)}
+            </div>
+            <div class="work-detail-list compact" aria-label={`${project.name} project details`}>
+              <p><strong>Role</strong><span>{project.role}</span></p>
+              <p><strong>Outcome</strong><span>{project.outcome}</span></p>
             </div>
           </div>
         </article>

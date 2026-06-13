@@ -1,0 +1,48 @@
+---
+const faqs = [
+  {
+    question: 'What does Thufail Adib Al Mutawakkil build?',
+    answer:
+      'Thufail Adib Al Mutawakkil builds websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.',
+  },
+  {
+    question: 'Who does Adib usually work with?',
+    answer:
+      'Adib usually works with founders, lean teams, startups, small businesses, and teams that need practical software shipped quickly.',
+  },
+  {
+    question: 'What kind of web apps can Adib build?',
+    answer:
+      'Adib can build booking platforms, dashboards, admin panels, payment flows, internal tools, portals, and product MVPs.',
+  },
+  {
+    question: 'What technologies does Adib use?',
+    answer:
+      'Adib works with tools such as Next.js, React, TypeScript, Flutter, PostgreSQL, Prisma, and AI APIs depending on the project needs.',
+  },
+  {
+    question: 'How can someone hire Adib?',
+    answer:
+      'You can email Adib or book a call to discuss the project scope, timeline, technical needs, and whether the fit is right before the build starts.',
+  },
+];
+---
+
+<section id="faq" class="geo-faq">
+  <div class="reveal geo-faq-header">
+    <span class="section-tag tag-faq">✦ FAQ</span>
+    <h2 class="section-heading">Clear answers for quick decisions</h2>
+    <p class="section-sub">
+      Short, direct answers about what I build, who I work with, and how a project usually starts.
+    </p>
+  </div>
+
+  <div class="geo-faq-grid reveal">
+    {faqs.map((item) => (
+      <article class="geo-faq-item">
+        <h3>{item.question}</h3>
+        <p>{item.answer}</p>
+      </article>
+    ))}
+  </div>
+</section>

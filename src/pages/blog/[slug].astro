@@ -21,9 +21,27 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
   day: 'numeric',
   year: 'numeric',
 }).format(date);
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? new URL(Astro.url.origin));
+const imageURL = new URL(cover, Astro.site ?? new URL(Astro.url.origin));
+const blogStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  image: String(imageURL),
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  author: { '@id': String(new URL('/#person', Astro.site ?? new URL(Astro.url.origin))) },
+  publisher: { '@id': String(new URL('/#person', Astro.site ?? new URL(Astro.url.origin))) },
+  mainEntityOfPage: String(canonicalURL),
+  url: String(canonicalURL),
+  keywords: tags.join(', '),
+  inLanguage: 'en',
+};
 ---
 
-<Layout title={`${title} | Thufail Adib Al Mutawakkil`} description={description} image={cover}>
+<Layout title={`${title} | Thufail Adib Al Mutawakkil`} description={description} image={cover} structuredData={blogStructuredData}>
   <Nav />
   <main class="post-page">
     <div class="post-container">
@@ -46,6 +64,17 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
       <div class="post-body">
         <Content />
       </div>
+
+      <section class="author-card" aria-label="About the author">
+        <div>
+          <span class="author-kicker">Written by</span>
+          <h2>Thufail Adib Al Mutawakkil</h2>
+          <p>
+            Adib is a freelance full-stack developer from Indonesia who builds websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.
+          </p>
+        </div>
+        <a href="mailto:thufails505@gmail.com" class="author-link">Work with Adib →</a>
+      </section>
 
       <div class="post-footer">
         <span class="post-thanks">Thanks for reading ✦</span>

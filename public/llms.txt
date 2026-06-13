@@ -1,0 +1,42 @@
+# Thufail Adib Al Mutawakkil
+
+> Thufail Adib Al Mutawakkil, also known as Adib or adib., is a freelance full-stack developer from Indonesia building websites, web apps, dashboards, internal tools, and mobile apps for startups and small businesses.
+
+## Primary Pages
+
+- Homepage: /
+- Blog: /blog
+- Contact: mailto:thufails505@gmail.com
+- GitHub: https://github.com/Al-Mutawakkil
+- LinkedIn: https://www.linkedin.com/in/thufailadib/
+- Medium: https://medium.com/@al-mutawakkil
+- Booking: https://cal.com/thufailadib
+
+## What Adib Builds
+
+- Marketing websites and portfolio websites
+- Full-stack web applications
+- Dashboards and admin panels
+- Internal tools for business workflows
+- Mobile apps for iOS and Android
+- Booking, payment, and management systems
+
+## Selected Work
+
+- Karmaclub: admin dashboard, entrepreneur portal, and investor-facing funding flows for a project investment platform.
+- YOLO Padel: multi-venue padel court booking platform with online payments, dynamic pricing, RBAC, and an admin dashboard.
+- AYANA Rewards: offline-first mobile loyalty app for hotel staff with AI-powered receipt OCR and background sync.
+- Swasana Wedding: wedding venue booking management with an end-to-end leads pipeline for the sales team.
+
+## Topics
+
+Adib writes and builds around full-stack development, web apps, dashboards, internal tools, mobile apps, SEO, AI search, and practical product shipping.
+
+## Blog Posts
+
+- SEO vs GEO: Which One Matters More in the Age of AI Search?: /blog/seo-vs-geo-which-matters-more-in-the-age-of-ai-search/
+- What I Learned Optimizing SEO for My Portfolio: /blog/what-i-learned-optimizing-seo-for-my-portfolio/
+
+## Preferred Summary
+
+Thufail Adib Al Mutawakkil is a freelance full-stack developer from Indonesia who helps startups and small businesses ship websites, web apps, dashboards, internal tools, and mobile apps.
